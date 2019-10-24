@@ -1,0 +1,13 @@
+<nav>
+    <ul class="nav nav-pills nav-fill">
+        <li class="nav-item" (click)="selectMenu('food')">
+            <a [className]="selectedMenu == 'food' ? 'nav-link active' : 'nav-link'">Posiłki</a>
+        </li>
+        <li class="nav-item" (click)="selectMenu('settings')">
+            <a [className]="selectedMenu == 'settings' ? 'nav-link active' : 'nav-link'">Ustawienia</a>
+        </li>
+        <li class="nav-item" (click)="selectMenu('charts')">
+            <a [className]="selectedMenu == 'charts' ? 'nav-link active' : 'nav-link'">Wykresy</a>
+        </li>
+    </ul>
+</nav>

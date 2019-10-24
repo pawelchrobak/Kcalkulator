@@ -1,0 +1,26 @@
+<h1>Ustawienia</h1>
+
+<h2>Edytor listy posiłków</h2>
+<div class="container">
+    <div class="row">
+        <div class="col">Nazwa</div>
+        <div class="col">Kalorie</div>
+        <div class="col">Opcje</div>
+    </div>
+    <div class="row" *ngFor="let food of foodItemsList">
+        <div class="col">{{food.name}}</div>
+        <div class="col">{{food.kcal}}</div>
+        <div class="col">{{food.id}}</div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <input type="text">
+        </div>
+        <div class="col">
+            <input type="number">
+        </div>
+        <div class="col">
+            <button type="submit">Dodaj</button>
+        </div>
+    </div>
+</div>

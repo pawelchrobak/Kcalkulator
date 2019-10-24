@@ -7,4 +7,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Kcalkulator';
+  private selectedPage: string = "food";
+
+  showPage(menu) {
+    let page = "food";
+
+    if ( menu === "settings" ) {
+      page = "settings";
+    } else if ( menu === "charts" ) {
+      page = "charts";
+    }
+    this.selectedPage = page;
+    return page;
+  }
 }
