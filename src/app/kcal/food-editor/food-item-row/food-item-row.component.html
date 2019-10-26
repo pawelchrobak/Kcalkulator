@@ -1,0 +1,17 @@
+<form [formGroup]="foodItemData" (ngSubmit)="editItem()">
+    <div class="row">
+        <div class="col">
+            <input type="text" formControlName="name">
+        </div>
+        <div class="col">
+            <input type="number" formControlName="kcal">
+        </div>
+        <div class="col">
+            <button *ngIf="!editMode" type="button" (click)="enterEditMode()">{{buttonEdit}}</button>
+            <button *ngIf="editMode" type="submit">{{buttonSave}}</button>
+            <button *ngIf="editMode" type="button" (click)="cancelChanges()">{{buttonCancel}}</button>
+            <button *ngIf="editMode" type="button" (click)="deleteItem()">{{buttonDelete}}</button>
+        </div>
+    </div>
+</form>
+<hr>

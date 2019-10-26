@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Kcalkulator';
-  private selectedPage: string = "food";
+  private selectedPage: string = "settings";
 
   showPage(menu) {
     let page = "food";

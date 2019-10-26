@@ -11,6 +11,20 @@ export class FoodEditorComponent implements OnInit {
 
   private foodItemsList: Array<FoodItem>;
 
+  foodItemChangeHandler($event) {
+    switch ($event.action) {
+      case 'edit':
+        this.service.updateFoodItem($event.foodItem, $event.formValues.name, $event.formValues.kcal);
+        // this.foodItemsList = this.service.getAllFoodItems();
+        break;
+      case 'delete':
+        console.log('usuwanie');
+        this.service.deleteFoodItem($event.foodItem);
+        break;
+    }
+  }
+
+
   constructor(private service:FoodServiceService) { }
 
   ngOnInit() {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-main-menu',
@@ -7,13 +7,12 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class MainMenuComponent implements OnInit {
 
-  private selectedMenu = 'food';
+  @Input() private selectedMenu = 'food';
 
   @Output() private menuSelection = new EventEmitter<string>();
 
   selectMenu(menu) {
     this.menuSelection.emit(menu);
-    this.selectedMenu = menu;
   }
 
   constructor() { }

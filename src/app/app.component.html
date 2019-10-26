@@ -1,4 +1,4 @@
-<app-main-menu (menuSelection)=showPage($event)></app-main-menu>
+<app-main-menu [selectedMenu]="selectedPage" (menuSelection)=showPage($event)></app-main-menu>
 
 <app-meal-adder *ngIf="selectedPage == 'food'"></app-meal-adder>
 <app-food-editor *ngIf="selectedPage == 'settings'">USTAWIENIA</app-food-editor>

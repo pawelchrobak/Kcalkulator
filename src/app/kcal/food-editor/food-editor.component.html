@@ -7,11 +7,15 @@
         <div class="col">Kalorie</div>
         <div class="col">Opcje</div>
     </div>
-    <div class="row" *ngFor="let food of foodItemsList">
+
+    <!-- <div class="row" *ngFor="let food of foodItemsList">
         <div class="col">{{food.name}}</div>
         <div class="col">{{food.kcal}}</div>
         <div class="col">{{food.id}}</div>
-    </div>
+    </div> -->
+
+    <app-food-item-row *ngFor="let food of foodItemsList" [foodItem]="food" (foodItemChange)="foodItemChangeHandler($event)"></app-food-item-row>
+
     <div class="row">
         <div class="col">
             <input type="text">
