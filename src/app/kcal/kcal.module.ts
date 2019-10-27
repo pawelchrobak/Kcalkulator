@@ -4,6 +4,7 @@ import { MealAdderComponent } from './meal-adder/meal-adder.component';
 import { FoodEditorComponent } from './food-editor/food-editor.component';
 import { FoodItemRowComponent } from './food-editor/food-item-row/food-item-row.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FoodItemAdderComponent } from './food-editor/food-item-adder/food-item-adder.component';
 
 
 
@@ -11,7 +12,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   declarations: [
     MealAdderComponent,
     FoodEditorComponent,
-    FoodItemRowComponent
+    FoodItemRowComponent,
+    FoodItemAdderComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,16 @@
+<p>Dodaj nowy posiłek:</p>
+
+<form [formGroup]="foodForm" (ngSubmit)="addFood()">
+    <div class="row">
+        <div class="col">
+            <input type="text" formControlName="name" placeholder="nazwa">
+        </div>
+        <div class="col">
+            <input type="number" formControlName="kcal" placeholder="kalorie">
+        </div>
+        <div class="col">
+            <button type="submit">{{buttonAdd}}</button>
+        </div>
+    </div>
+</form>
+<hr>

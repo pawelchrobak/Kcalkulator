@@ -18,7 +18,6 @@ export class FoodEditorComponent implements OnInit {
         // this.foodItemsList = this.service.getAllFoodItems();
         break;
       case 'delete':
-        console.log('usuwanie');
         this.service.deleteFoodItem($event.foodItem);
         break;
     }

@@ -38,21 +38,6 @@ export class FoodItemRowComponent implements OnInit {
     this.foodItemData.controls.kcal.setValue(this.foodItem.$kcal);
     this.exitEditMode();
   }
-
-  onSubmit() {
-    // switch(this.currentAction) {
-    //   case this.buttonEdit:
-    //     this.editing = true;
-    //     this.currentAction = this.buttonSave;
-    //     console.log(`rozpoczęto edycję elementu o id:${this.foodItem.$id}`);
-    //     break;
-    //   case this.buttonSave:
-    //     this.editing = false;
-    //     this.currentAction = this.buttonEdit;
-    //     console.log('zapisano zmiany');
-    //     break;
-    // }
-  }
   
   editItem() {
     this.foodItemChange.emit({
@@ -77,7 +62,7 @@ export class FoodItemRowComponent implements OnInit {
     this.foodItemData = new FormGroup({
       name: new FormControl(this.foodItem.$name),
       kcal: new FormControl(this.foodItem.$kcal)
-    })
+    });
     this.foodItemData.controls.name.disable();
     this.foodItemData.controls.kcal.disable();
   }

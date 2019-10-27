@@ -8,15 +8,11 @@
         <div class="col">Opcje</div>
     </div>
 
-    <!-- <div class="row" *ngFor="let food of foodItemsList">
-        <div class="col">{{food.name}}</div>
-        <div class="col">{{food.kcal}}</div>
-        <div class="col">{{food.id}}</div>
-    </div> -->
-
     <app-food-item-row *ngFor="let food of foodItemsList" [foodItem]="food" (foodItemChange)="foodItemChangeHandler($event)"></app-food-item-row>
 
-    <div class="row">
+    <app-food-item-adder></app-food-item-adder>
+
+    <!-- <div class="row">
         <div class="col">
             <input type="text">
         </div>
@@ -26,5 +22,5 @@
         <div class="col">
             <button type="submit">Dodaj</button>
         </div>
-    </div>
+    </div> -->
 </div>
