@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FoodServiceService } from '../../food-service.service';
 import { FoodItem } from '../../food-item';
 
@@ -23,8 +23,8 @@ export class FoodItemAdderComponent implements OnInit {
 
   ngOnInit() {
     this.foodForm = new FormGroup({
-      name: new FormControl(''),
-      kcal: new FormControl('')
+      name: new FormControl('', Validators.required),
+      kcal: new FormControl('', [Validators.required,Validators.min(0)])
     });
   }
 

@@ -13,7 +13,7 @@ import { FoodItemAdderComponent } from './food-editor/food-item-adder/food-item-
     MealAdderComponent,
     FoodEditorComponent,
     FoodItemRowComponent,
-    FoodItemAdderComponent
+    FoodItemAdderComponent,
   ],
   imports: [
     CommonModule,

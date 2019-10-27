@@ -3,9 +3,9 @@
 <h2>Edytor listy posiłków</h2>
 <div class="container">
     <div class="row">
-        <div class="col">Nazwa</div>
-        <div class="col">Kalorie</div>
-        <div class="col">Opcje</div>
+        <div class="col-sm">Nazwa</div>
+        <div class="col-sm">Kalorie</div>
+        <div class="col-sm">Opcje</div>
     </div>
 
     <app-food-item-row *ngFor="let food of foodItemsList" [foodItem]="food" (foodItemChange)="foodItemChangeHandler($event)"></app-food-item-row>

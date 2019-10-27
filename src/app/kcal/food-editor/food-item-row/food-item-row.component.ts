@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FoodItem } from '../../food-item';
 
 @Component({
@@ -40,12 +40,14 @@ export class FoodItemRowComponent implements OnInit {
   }
   
   editItem() {
-    this.foodItemChange.emit({
-      action: "edit",
-      foodItem: this.foodItem,
-      formValues: this.foodItemData.value
-    });
-    this.exitEditMode();
+    if (this.foodItemData.valid) {
+      this.foodItemChange.emit({
+        action: "edit",
+        foodItem: this.foodItem,
+        formValues: this.foodItemData.value
+      });
+      this.exitEditMode();
+    }
   }
 
   deleteItem() {
@@ -60,8 +62,8 @@ export class FoodItemRowComponent implements OnInit {
   
   ngOnInit() {
     this.foodItemData = new FormGroup({
-      name: new FormControl(this.foodItem.$name),
-      kcal: new FormControl(this.foodItem.$kcal)
+      'name': new FormControl(this.foodItem.$name, Validators.required),
+      'kcal': new FormControl(this.foodItem.$kcal, [Validators.required,Validators.min(0)])
     });
     this.foodItemData.controls.name.disable();
     this.foodItemData.controls.kcal.disable();

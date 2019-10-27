@@ -1,17 +1,27 @@
 <form [formGroup]="foodItemData" (ngSubmit)="editItem()">
     <div class="row">
-        <div class="col">
-            <input type="text" formControlName="name">
+        <div class="col-sm">
+            <input class="form-control" type="text" formControlName="name" placeholder="nazwa" required>
         </div>
-        <div class="col">
-            <input type="number" formControlName="kcal">
+        <div class="col-sm">
+            <input class="form-control" type="number" formControlName="kcal" placeholder="kalorie" required>
         </div>
-        <div class="col">
-            <button *ngIf="!editMode" type="button" (click)="enterEditMode()">{{buttonEdit}}</button>
-            <button *ngIf="editMode" type="submit">{{buttonSave}}</button>
-            <button *ngIf="editMode" type="button" (click)="cancelChanges()">{{buttonCancel}}</button>
-            <button *ngIf="editMode" type="button" (click)="deleteItem()">{{buttonDelete}}</button>
+        <div class="col-sm">
+            <button class="btn btn-primary" *ngIf="!editMode" type="button" (click)="enterEditMode()">{{buttonEdit}}</button>
+            <button class="btn btn-success" [disabled]="!foodItemData.valid" *ngIf="editMode" type="submit">{{buttonSave}}</button>
+            <button class="btn btn-warning" *ngIf="editMode" type="button" (click)="cancelChanges()">{{buttonCancel}}</button>
+            <button class="btn btn-danger" *ngIf="editMode" type="button" (click)="deleteItem()">{{buttonDelete}}</button>
+            <!-- [className]="selectedMenu == 'charts' ? 'nav-link active' : 'nav-link'" -->
+        </div>
+    </div>
+    <div *ngIf="!foodItemData.valid && editMode" class="row">
+        <div class="col alert alert-danger">
+            <div>Niepoprawne dane:</div>
+            <ul>
+                <li *ngIf="foodItemData.get('name').errors?.required">nazwa nie może być pusta</li>
+                <li *ngIf="foodItemData.get('kcal').errors?.required">kalorie muszą być liczbą</li>
+                <li *ngIf="foodItemData.get('kcal').errors?.min">kalorie nie mogą być liczbą ujemną</li>
+            </ul>
         </div>
     </div>
 </form>
-<hr>
