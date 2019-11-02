@@ -5,6 +5,8 @@ import { FoodEditorComponent } from './food-editor/food-editor.component';
 import { FoodItemRowComponent } from './food-editor/food-item-row/food-item-row.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FoodItemAdderComponent } from './food-editor/food-item-adder/food-item-adder.component';
+import { KcalStatusComponent } from './kcal-status/kcal-status.component';
+import { MealHistoryComponent } from './meal-history/meal-history.component';
 
 
 
@@ -14,6 +16,8 @@ import { FoodItemAdderComponent } from './food-editor/food-item-adder/food-item-
     FoodEditorComponent,
     FoodItemRowComponent,
     FoodItemAdderComponent,
+    KcalStatusComponent,
+    MealHistoryComponent,
   ],
   imports: [
     CommonModule,

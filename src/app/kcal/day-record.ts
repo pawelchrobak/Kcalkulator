@@ -12,6 +12,12 @@ export class DayRecord {
 		this.foodItemsEaten = $foodItemsEaten;
 	}
 
+    public addEatenFoodItem(food: FoodItem): DayRecord {
+        this.foodItemsEaten.push(food);
+        this.kcalConsumed += food.$kcal;
+        return this;
+    } 
+
     /**
      * Getter $kcalLimit
      * @return {number}

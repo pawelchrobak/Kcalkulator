@@ -1,13 +1,20 @@
-<h1>Dodaj zjedzony posiłek:</h1>
+<app-kcal-status [kcalConsumed]="currentDayRecord.$kcalConsumed" [kcalLimit]="currentDayRecord.$kcalLimit"></app-kcal-status>
 
-Kalorie: {{currentDayRecord.$kcalConsumed}}/{{currentDayRecord.$kcalLimit}}
+<h1>Dodaj zjedzony posiłek:</h1>
 <form [formGroup]="mealAddForm" (ngSubmit)="addMeal()">
-    <label>
-        Zjadłem:
-        <select class="form-control" formControlName="meal" required>
-            <option value="" disabled>Co dzisiaj zjadłeś?</option>
+    <div class="input-group">
+
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="meal-select">Zjadłem:</label>
+        </div>
+        <select class="custom-select" formControlName="meal" id="meal-select" required>
+            <option value="" disabled>wybierz posiłek</option>
             <option *ngFor="let item of foodItemsList; let i = index" [value]="i">{{item.name}} - {{item.kcal}} kcal</option>
         </select>
-    </label>
-    <button [disabled]="mealAddForm.invalid" type="submit">{{buttonAdd}}</button>
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" [disabled]="mealAddForm.invalid" type="submit">{{buttonAdd}}</button>
+        </div>
+    </div>
 </form>
+
+<app-meal-history [currentDayRecord]="currentDayRecord"></app-meal-history>

@@ -8,15 +8,6 @@ import { FoodItem } from './food-item';
 export class KcalCounterService {
   private defaultKcalLimit: number = 2000;
 
-  addEatenMeal($food: FoodItem): DayRecord {
-    let record = this.getDayRecord();
-    record.$foodItemsEaten.push($food);
-    console.log($food.$kcal);
-    console.log(record.$kcalConsumed);
-    record.$kcalConsumed = record.$kcalConsumed + $food.$kcal;
-    return record;
-  }
-
   getActiveKcalLimit(): number {
     let limit = this.defaultKcalLimit;
     if ( this.isActiveKcalLimitSet() ) {
@@ -38,15 +29,24 @@ export class KcalCounterService {
     return newLimit;
   }
 
-  private dateToString(date?: Date): string {
-    let currentDate: Date;
+  dateToString(date?: Date): string {
+    let currentDate: Date,
+        yyyy: string,
+        MM: any,
+        dd: any;
         
     if ( date ) {
       currentDate = date;
     } else {
       currentDate = new Date();
     }
-    return `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}`;
+
+    yyyy = currentDate.getFullYear().toString();
+    MM = currentDate.getMonth()+1;
+    if ( MM < 10 ) { MM = '0' + MM.toString(); } else { MM = MM.toString(); }
+    dd = currentDate.getDate();
+    if ( dd < 10 ) { dd = '0' + dd.toString(); } else { dd = dd.toString(); }
+    return `${yyyy}-${MM}-${dd}`;
   }
   
   // getKcalLimit(date?: Date): number {
@@ -65,6 +65,19 @@ export class KcalCounterService {
   //   }
   //   return kcalLimit;
   // }
+
+  saveDayRecord(record:DayRecord, date?: Date): DayRecord {
+    let currentDate: Date;
+
+    if ( date ) {
+      currentDate = date;
+    } else {
+      currentDate = new Date();
+    }
+
+    localStorage.setItem(this.dateToString(currentDate),JSON.stringify(record));
+    return record;
+  }
 
   getDayRecord(date?: Date): DayRecord {
     let currentDate: Date,

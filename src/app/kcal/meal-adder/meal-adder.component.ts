@@ -14,7 +14,7 @@ export class MealAdderComponent implements OnInit {
   private foodItemsList: Array<FoodItem>;
   private currentDayRecord: DayRecord;
   private mealAddForm: FormGroup;
-  private buttonAdd: string = 'Chrup!';
+  private buttonAdd: string = 'OK!';
   private kcalLimit: number;
   private kcalConsumed: number;
 
@@ -23,7 +23,8 @@ export class MealAdderComponent implements OnInit {
   addMeal() {
     let eatenMeal = this.foodItemsList[this.mealAddForm.get('meal').value];
     console.log(eatenMeal);
-    this.currentDayRecord = this.kcalService.addEatenMeal(eatenMeal);
+    this.currentDayRecord.addEatenFoodItem(eatenMeal);
+    this.kcalService.saveDayRecord(this.currentDayRecord);
   }
 
   ngOnInit() {
