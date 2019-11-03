@@ -1,5 +1,4 @@
-<app-kcal-status [kcalConsumed]="currentDayRecord.$kcalConsumed" [kcalLimit]="currentDayRecord.$kcalLimit"></app-kcal-status>
-
+<app-kcal-status [kcalConsumed]="this.kcalService.currentDayRecord.$kcalConsumed" [kcalLimit]="this.kcalService.currentDayRecord.$kcalLimit"></app-kcal-status>
 <h1>Dodaj zjedzony posiłek:</h1>
 <form [formGroup]="mealAddForm" (ngSubmit)="addMeal()">
     <div class="input-group">
@@ -16,5 +15,14 @@
         </div>
     </div>
 </form>
+<button type="button" (click)="resetDay()">resetuj dzisiejszy dzień</button>
 
-<app-meal-history [currentDayRecord]="currentDayRecord"></app-meal-history>
+<div class="row">
+    <div class="col-sm">
+        <app-chart></app-chart>
+    </div>
+    <div class="col-sm">
+        <app-meal-history></app-meal-history>
+    </div>
+</div>
+

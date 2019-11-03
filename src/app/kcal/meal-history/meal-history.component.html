@@ -16,7 +16,7 @@
         </div>
     </div>
     <ul class="list-group">
-        <li class="list-group-item" *ngFor="let item of shownDayRecord.$foodItemsEaten">{{item.name}} - {{item.kcal}} kcal</li>
-        <li class="list-group-item" *ngIf="shownDayRecord.$foodItemsEaten.length == 0">Brak zapisanych posiłków</li>
+        <li class="list-group-item" *ngFor="let item of this.kcalService.shownDayRecord.$foodItemsEaten">{{item.name}} - {{item.kcal}} kcal</li>
+        <li class="list-group-item" *ngIf="this.kcalService.shownDayRecord.$foodItemsEaten.length == 0">Brak zapisanych posiłków</li>
     </ul>
 </div>

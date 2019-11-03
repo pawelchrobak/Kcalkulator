@@ -7,6 +7,35 @@ import { FoodItem } from './food-item';
 })
 export class KcalCounterService {
   private defaultKcalLimit: number = 2000;
+  private firstRun: boolean;
+  private firstRunDate: string;
+
+  public currentDayRecord: DayRecord;
+  public shownDayRecord: DayRecord;
+
+  isItFirstRun() {
+    return this.firstRun;
+  }
+
+  firstRunDone() {
+    localStorage.setItem('firstRun','false');
+    this.firstRun = false;
+  }
+
+  // $currentDayRecord(record?: DayRecord) {
+  //   if ( record ) {
+  //     this.currentDayRecord = record;
+  //   }
+  //   return this.currentDayRecord;
+  // }
+
+  // $shownDayRecord(record?: DayRecord) {
+  //   if ( record ) {
+  //     this.shownDayRecord = record;
+  //   }
+  //   return this.shownDayRecord;
+  // }
+  
 
   getActiveKcalLimit(): number {
     let limit = this.defaultKcalLimit;
@@ -25,7 +54,9 @@ export class KcalCounterService {
   }
 
   setActiveKcalLimit(newLimit: number): number {
-    localStorage.setItem('activeKcalLimit',newLimit.toString())
+    localStorage.setItem('activeKcalLimit',newLimit.toString());
+    this.currentDayRecord.$kcalLimit = newLimit;
+    this.saveDayRecord();
     return newLimit;
   }
 
@@ -66,8 +97,9 @@ export class KcalCounterService {
   //   return kcalLimit;
   // }
 
-  saveDayRecord(record:DayRecord, date?: Date): DayRecord {
-    let currentDate: Date;
+  saveDayRecord(record?:DayRecord, date?: Date): DayRecord {
+    let currentDate: Date,
+        currentRecord: DayRecord;
 
     if ( date ) {
       currentDate = date;
@@ -75,8 +107,14 @@ export class KcalCounterService {
       currentDate = new Date();
     }
 
-    localStorage.setItem(this.dateToString(currentDate),JSON.stringify(record));
-    return record;
+    if ( record ) {
+      currentRecord = record;
+    } else {
+      currentRecord = this.currentDayRecord;
+    }
+
+    localStorage.setItem(this.dateToString(currentDate),JSON.stringify(currentRecord));
+    return currentRecord;
   }
 
   getDayRecord(date?: Date): DayRecord {
@@ -98,5 +136,21 @@ export class KcalCounterService {
     return record;
   }
 
-  constructor() { }
+  constructor() {
+    if ( localStorage.getItem('firstRun') === null || localStorage.getItem('firstRun') === 'true' ) {
+      this.firstRunDate = this.dateToString();
+      localStorage.setItem('firstRunDate',this.firstRunDate);
+      this.firstRun = true;
+      localStorage.setItem('firstRun','true');
+    } else {
+      this.firstRunDate = localStorage.getItem('firstRunDate');
+      this.firstRun = false;
+    }
+
+    this.currentDayRecord = this.getDayRecord();
+    this.shownDayRecord = this.currentDayRecord;
+
+    console.log(this.firstRun);
+    console.log(this.firstRunDate);
+  }
 }

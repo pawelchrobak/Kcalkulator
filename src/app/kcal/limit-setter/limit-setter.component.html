@@ -1,0 +1,12 @@
+<h2>Limit kalorii</h2>
+<form [formGroup]="limitForm" (ngSubmit)=setLimit()>
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="kcalLimit">Limit kalorii:</label>
+        </div>
+        <input id="kcalLimit" class="form-control" type="number" formControlName="kcalLimit" required>
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit" [disabled]="!limitForm.valid">{{buttonLimit}}</button>
+        </div>
+    </div>
+</form>

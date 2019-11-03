@@ -9,14 +9,10 @@ import { KcalCounterService } from '../kcal-counter.service';
 })
 export class MealHistoryComponent implements OnInit {
 
-  @Input() private currentDayRecord: DayRecord;
-  private shownDayRecord: DayRecord = this.currentDayRecord;
   private currentDate: Date= new Date();
   private currentDateString: string = this.kcalService.dateToString(this.currentDate);
   private shownDate: Date;
   private shownDateString: string;
-
-
 
   changeDay(x: number): string {
     let nextDay = this.shownDate.getTime() + x * ( 24 * 60 * 60 * 1000);
@@ -24,9 +20,9 @@ export class MealHistoryComponent implements OnInit {
     this.shownDateString = this.kcalService.dateToString(this.shownDate);
 
     if ( this.shownDateString === this.currentDateString ) {
-      this.shownDayRecord = this.currentDayRecord;
+      this.kcalService.shownDayRecord = this.kcalService.currentDayRecord;
     } else {
-      this.shownDayRecord = this.kcalService.getDayRecord(this.shownDate);
+      this.kcalService.shownDayRecord = this.kcalService.getDayRecord(this.shownDate);
     }
 
     return this.shownDateString;
@@ -36,9 +32,9 @@ export class MealHistoryComponent implements OnInit {
   constructor(private kcalService: KcalCounterService) { }
 
   ngOnInit() {
-    this.shownDayRecord = this.currentDayRecord;
     this.shownDate = this.currentDate;
     this.shownDateString = this.kcalService.dateToString(this.shownDate);
+    this.kcalService.shownDayRecord = this.kcalService.currentDayRecord;
   }
 
 }

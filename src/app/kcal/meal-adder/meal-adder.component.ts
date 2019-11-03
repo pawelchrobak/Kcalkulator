@@ -12,7 +12,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class MealAdderComponent implements OnInit {
   private foodItemsList: Array<FoodItem>;
-  private currentDayRecord: DayRecord;
   private mealAddForm: FormGroup;
   private buttonAdd: string = 'OK!';
   private kcalLimit: number;
@@ -20,11 +19,13 @@ export class MealAdderComponent implements OnInit {
 
   constructor(private foodService:FoodServiceService, private kcalService:KcalCounterService ) { }
 
+  resetDay() {
+    localStorage.removeItem(this.kcalService.dateToString());
+  }
   addMeal() {
     let eatenMeal = this.foodItemsList[this.mealAddForm.get('meal').value];
-    console.log(eatenMeal);
-    this.currentDayRecord.addEatenFoodItem(eatenMeal);
-    this.kcalService.saveDayRecord(this.currentDayRecord);
+    this.kcalService.currentDayRecord.addEatenFoodItem(eatenMeal);
+    this.kcalService.saveDayRecord(this.kcalService.currentDayRecord);
   }
 
   ngOnInit() {
@@ -32,7 +33,6 @@ export class MealAdderComponent implements OnInit {
       meal: new FormControl('', Validators.required)
     });
     this.foodItemsList = this.foodService.getAllFoodItems();
-    this.currentDayRecord = this.kcalService.getDayRecord();
   }
 
 }

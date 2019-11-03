@@ -7,6 +7,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FoodItemAdderComponent } from './food-editor/food-item-adder/food-item-adder.component';
 import { KcalStatusComponent } from './kcal-status/kcal-status.component';
 import { MealHistoryComponent } from './meal-history/meal-history.component';
+import { ChartComponent } from './chart/chart.component';
+import { LimitSetterComponent } from './limit-setter/limit-setter.component';
 
 
 
@@ -18,6 +20,8 @@ import { MealHistoryComponent } from './meal-history/meal-history.component';
     FoodItemAdderComponent,
     KcalStatusComponent,
     MealHistoryComponent,
+    ChartComponent,
+    LimitSetterComponent,
   ],
   imports: [
     CommonModule,
@@ -27,7 +31,8 @@ import { MealHistoryComponent } from './meal-history/meal-history.component';
   exports: [
     MealAdderComponent,
     FoodEditorComponent,
-    FoodItemRowComponent
+    FoodItemRowComponent,
+    LimitSetterComponent
   ]
 })
 export class KcalModule { }
