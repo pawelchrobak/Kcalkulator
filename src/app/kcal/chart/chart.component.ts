@@ -9,35 +9,40 @@ import { KcalCounterService } from '../kcal-counter.service';
 })
 export class ChartComponent implements OnInit {
 
+  private startDate: Date = new Date(this.kcalService.getFirstRunDate());
+  private startDateString: string = this.kcalService.getFirstRunDate();
+  private endDate: Date = new Date();
+  private endDateString: string = this.kcalService.dateToString(this.endDate);
+
   private ctx;
-  myChart: Chart;
+  private myChart: Chart;
+
   private chartData = {
     type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
+      labels: this.makeLabels(this.startDate,this.endDate),
+      datasets: [
+        {
+          label: 'Zjedzone kilokalorie [kcal]',
+          data: this.getData(this.startDate, this.endDate),
+          backgroundColor: 'rgba(51,102,204,0.2)',
+          borderColor: 'rgba(51,102,204,1)',
+          borderWidth: 3
+        },
+        {
+          label: 'Ustawiony limit',
+          data: this.getData(this.startDate, this.endDate, true),
+          type: 'line',
+          fill: false,
+          borderColor: 'rgba(200, 0, 0, 1)',
+          lineTension: 0
+          
+        }
+      ]
     },
     options: {
+        responsive: true,
+        maintainAspectRatio: true,
         scales: {
             yAxes: [{
                 ticks: {
@@ -48,12 +53,60 @@ export class ChartComponent implements OnInit {
     }
   }
 
+  changeDay(date: Date, x: number): Date {
+    let time: number = date.getTime();
+    time += x * ( 24 * 60 * 60 * 1000);
+    date.setTime(time);
+    return date;
+  }
+
+  makeLabels (startDate: Date, endDate: Date): Array<string> {
+    let labels = [],
+        endDateStringLoopStop = '',
+        date = new Date();
+
+    date.setTime(endDate.getTime());
+    endDateStringLoopStop = this.kcalService.dateToString(date);
+    
+    for ( date.setTime(startDate.getTime()) ; this.kcalService.dateToString(date) != endDateStringLoopStop ; this.changeDay(date,1) ) {
+      labels.push(this.kcalService.dateToString(date));
+    }
+
+    console.log(labels);
+    return labels;
+  }
+
+  getData (startDate: Date, endDate: Date, returnLimit?: boolean): Array<number> {
+    let returnData = [],
+        endDateStringLoopStop = '',
+        date = new Date();
+
+    date.setTime(endDate.getTime());
+    endDateStringLoopStop = this.kcalService.dateToString(date);
+
+    for ( date.setTime(startDate.getTime()) ; this.kcalService.dateToString(date) != endDateStringLoopStop ; this.changeDay(date,1) ) {
+      let dayRecord = this.kcalService.getDayRecord(date);
+
+      if ( returnLimit ) {
+        returnData.push(dayRecord.$kcalLimit);
+      } else {
+        returnData.push(dayRecord.$kcalConsumed);
+      }
+    }   
+
+    console.log(returnData);
+    return returnData;
+  }
   
   
   constructor(private kcalService: KcalCounterService) { }
   
   ngOnInit() {
-    this.ctx = document.getElementById('myChart').getContext('2d');
+    this.getData(this.startDate, this.endDate);
+
+    this.ctx = document.getElementById('myChart');
+    // this.ctx = document.getElementById('myChart').getContext('2d'); ?? why get context?
+
     this.myChart = new Chart(this.ctx, this.chartData);
   }
 
