@@ -5,10 +5,10 @@
     <div class="card-header text-center">
         <div class="row">
             <div class="col-sm">
-                <button class="btn btn-outline-primary" type="button" (click)="changeDay(-1)">Poprzedni dzień</button>
+                <button class="btn btn-outline-primary" *ngIf="shownDateString != this.kcalService.getFirstRunDate()" type="button" (click)="changeDay(-1)">Poprzedni dzień</button>
             </div>
             <div class="col-sm">
-                <input class="form-control" type="date" [value]="shownDateString" id="data">
+                <input #dateInput class="form-control" type="date" [value]="shownDateString" [min]="this.kcalService.getFirstRunDate()" [max]="this.kcalService.dateToString()" id="data" (change)="showDate(dateInput)">
             </div>
             <div class="col-sm">
                 <button class="btn btn-outline-primary" *ngIf="shownDateString != currentDateString" type="button" (click)="changeDay(1)">Następny dzień</button>

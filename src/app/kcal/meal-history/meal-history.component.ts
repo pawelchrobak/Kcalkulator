@@ -14,6 +14,19 @@ export class MealHistoryComponent implements OnInit {
   private shownDate: Date;
   private shownDateString: string;
 
+  showDate(input) {
+    this.shownDate.setTime(Date.parse(input.value));
+    this.shownDateString = input.value;
+
+    if ( this.shownDateString === this.currentDateString ) {
+      this.kcalService.shownDayRecord = this.kcalService.currentDayRecord;
+    } else {
+      this.kcalService.shownDayRecord = this.kcalService.getDayRecord(this.shownDate);
+    }
+
+    return this.shownDateString;
+  }
+
   changeDay(x: number): string {
     let nextDay = this.shownDate.getTime() + x * ( 24 * 60 * 60 * 1000);
     this.shownDate.setTime(nextDay);

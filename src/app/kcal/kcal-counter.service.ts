@@ -13,6 +13,10 @@ export class KcalCounterService {
   public currentDayRecord: DayRecord;
   public shownDayRecord: DayRecord;
 
+  getFirstRunDate() {
+    return this.firstRunDate;
+  }
+
   isItFirstRun() {
     return this.firstRun;
   }
