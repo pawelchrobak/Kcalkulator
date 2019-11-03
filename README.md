@@ -1,6 +1,6 @@
 # Kcalkulator
 
-Angluar app for counting eaten calories.
+Angluar app for counting eaten calories. Upgrade from vanilla JS version.
 
 ## Features
 
