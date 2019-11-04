@@ -32,7 +32,10 @@ import { LimitSetterComponent } from './limit-setter/limit-setter.component';
     MealAdderComponent,
     FoodEditorComponent,
     FoodItemRowComponent,
-    LimitSetterComponent
+    LimitSetterComponent,
+    KcalStatusComponent,
+    ChartComponent,
+    MealHistoryComponent
   ]
 })
 export class KcalModule { }

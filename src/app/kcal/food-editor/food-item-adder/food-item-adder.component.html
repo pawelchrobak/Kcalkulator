@@ -1,23 +1,25 @@
 <form [formGroup]="foodForm" (ngSubmit)="addFood()">
     <div class="row">
-        <div class="col-sm">
+        <div class="col-sm-7 col-md-5 mb-1">
             <input class="form-control" type="text" formControlName="name" placeholder="nazwa">
         </div>
-        <div class="col-sm">
+        <div class="col-sm-5 col-md-2 mb-1">
             <input class="form-control" type="number" formControlName="kcal" placeholder="kalorie">
         </div>
-        <div class="col-sm">
+        <div class="col-md-5 mb-1">
             <button class="btn btn-success" [disabled]="!foodForm.valid"  type="submit">{{buttonAdd}}</button>
         </div>
     </div>
     <div *ngIf="!foodForm.valid && foodForm.touched" class="row">
-        <div class="col alert alert-danger">
-            <div>Niepoprawne dane:</div>
-            <ul>
-                <li *ngIf="foodForm.get('name').errors?.required">nazwa nie może być pusta</li>
-                <li *ngIf="foodForm.get('kcal').errors?.required">kalorie muszą być liczbą</li>
-                <li *ngIf="foodForm.get('kcal').errors?.min">kalorie nie mogą być liczbą ujemną</li>
-            </ul>
+        <div class="col">
+            <div class="alert alert-danger">
+                <p>Niepoprawne dane:</p>
+                <ul>
+                    <li *ngIf="foodForm.get('name').errors?.required">nazwa nie może być pusta</li>
+                    <li *ngIf="foodForm.get('kcal').errors?.required">kalorie muszą być liczbą</li>
+                    <li *ngIf="foodForm.get('kcal').errors?.min">kalorie nie mogą być liczbą ujemną</li>
+                </ul>
+            </div>
         </div>
     </div>
 </form>

@@ -1,29 +1,21 @@
-<app-kcal-status [kcalConsumed]="this.kcalService.currentDayRecord.$kcalConsumed" [kcalLimit]="this.kcalService.currentDayRecord.$kcalLimit"></app-kcal-status>
-<h1>Dodaj zjedzony posiłek:</h1>
-<form [formGroup]="mealAddForm" (ngSubmit)="addMeal()">
-    <div class="input-group">
-
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="meal-select">Zjadłem:</label>
-        </div>
-        <select class="custom-select" formControlName="meal" id="meal-select" required>
-            <option value="" disabled>wybierz posiłek</option>
-            <option *ngFor="let item of foodItemsList; let i = index" [value]="i">{{item.name}} - {{item.kcal}} kcal</option>
-        </select>
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary" [disabled]="mealAddForm.invalid" type="submit">{{buttonAdd}}</button>
-        </div>
-    </div>
-</form>
-<div class="alert alert-info">Brak produktu na liście? Dodaj go w ustawieniach.</div>
-<button type="button" (click)="resetDay()">resetuj dzisiejszy dzień</button>
-
-<div class="row">
-    <div class="col-sm">
-        <app-chart></app-chart>
-    </div>
-    <div class="col-sm">
-        <app-meal-history></app-meal-history>
+<div class="card bg-light mb-3">
+    <h3 class="card-header">Dodaj zjedzony posiłek</h3>
+    <div class="card-body">
+        <form [formGroup]="mealAddForm" (ngSubmit)="addMeal()">
+            <div class="input-group mb-4">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="meal-select">Zjadłem:</label>
+                </div>
+                <select class="custom-select" formControlName="meal" id="meal-select" required>
+                    <option value="" disabled>wybierz posiłek</option>
+                    <option *ngFor="let item of foodItemsList; let i = index" [value]="i">{{item.name}} - {{item.kcal}} kcal</option>
+                </select>
+                <div class="input-group-append">
+                    <button class="btn btn-primary" [disabled]="mealAddForm.invalid" type="submit">{{buttonAdd}}</button>
+                </div>
+            </div>
+        </form>
+        <div class="alert alert-info">Brak produktu na liście? Dodaj go w ustawieniach.</div>
     </div>
 </div>
 

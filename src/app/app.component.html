@@ -1,5 +1,10 @@
-<app-main-menu [selectedMenu]="selectedPage" (menuSelection)=showPage($event)></app-main-menu>
-
-<app-main *ngIf="selectedPage == 'food'"></app-main>
-<app-settings *ngIf="selectedPage == 'settings'"></app-settings>
-<!-- <h1 *ngIf="selectedPage == 'charts'">WYKRESY</h1> -->
+<div class="container">
+    <div class="jumbotron" id="hero">
+        <h1 class="display-4">Kcalkulator</h1>
+        <p class="lead">Licz kalorie bez wysiłku!</p>
+        <hr class="my4">
+        <app-main-menu [selectedMenu]="selectedPage" (menuSelection)=showPage($event)></app-main-menu>
+    </div>
+    <app-main *ngIf="selectedPage == 'food'"></app-main>
+    <app-settings *ngIf="selectedPage == 'settings'"></app-settings>
+</div>

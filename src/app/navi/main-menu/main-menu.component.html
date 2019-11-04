@@ -1,13 +1,13 @@
-<nav>
-    <ul class="nav nav-pills nav-fill">
+<nav class="navbar navbar-light bg-light">
+    <ul class="nav">
+        <li class="nav-item">
+            <span class="nav-link">Menu</span>
+        </li>
         <li class="nav-item" (click)="selectMenu('food')">
-            <a [className]="selectedMenu == 'food' ? 'nav-link active' : 'nav-link'">Posiłki</a>
+            <a [className]="selectedMenu == 'food' ? 'nav-link active' : 'nav-link'" href="#">Dodawanie posiłków</a>
         </li>
         <li class="nav-item" (click)="selectMenu('settings')">
-            <a [className]="selectedMenu == 'settings' ? 'nav-link active' : 'nav-link'">Ustawienia</a>
+            <a [className]="selectedMenu == 'settings' ? 'nav-link active' : 'nav-link'" href="#">Ustawienia</a>
         </li>
-        <!-- <li class="nav-item" (click)="selectMenu('charts')">
-            <a [className]="selectedMenu == 'charts' ? 'nav-link active' : 'nav-link'">Wykresy</a>
-        </li> -->
     </ul>
 </nav>

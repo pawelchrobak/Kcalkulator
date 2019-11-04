@@ -1,3 +1,13 @@
-* {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+
+#hero {
+    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url("../assets/food-bg.jpg");
+
+    h1, p {
+        color: white;
+    }
+
+    hr {
+        border-color: white;
+    }
 }

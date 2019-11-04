@@ -1,12 +1,9 @@
-<h2>Edytor listy posiłków</h2>
-<div class="container">
-    <div class="row">
-        <div class="col-sm">Nazwa</div>
-        <div class="col-sm">Kalorie</div>
-        <div class="col-sm">Opcje</div>
+<div class="card bg-light mb-3">
+    <h3 class="card-header">Edytor listy posiłków</h3>
+    <div class="card-body">
+        <p>Poniżej możesz zedytować dostępne posiłki. Nie wpłynie na historię już spożytych produktów. Na dole listy znajdziesz możliwość dodania własnego produktu.</p>
+        <app-food-item-row *ngFor="let food of foodItemsList" [foodItem]="food" (foodItemChange)="foodItemChangeHandler($event)"></app-food-item-row>
+        <p class="mt-3">Dodaj nowy produkt:</p>        
+        <app-food-item-adder></app-food-item-adder>
     </div>
-
-    <app-food-item-row *ngFor="let food of foodItemsList" [foodItem]="food" (foodItemChange)="foodItemChangeHandler($event)"></app-food-item-row>
-
-    <app-food-item-adder></app-food-item-adder>
 </div>

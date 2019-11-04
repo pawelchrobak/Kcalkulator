@@ -1,9 +1,18 @@
-<p>Strona główna</p>
-
 <div *ngIf="firstRun" class="alert alert-primary mb-3 text-center">
     Wygląda na to, że to twoje pierwsze uruchomienie aplikacji.<br>Domyślnie przyjęto limit 2000 kcal. Możesz zmienić go w ustawieniach.
 </div>
 <div *ngIf="!firstRun && !this.kcalService.isActiveKcalLimitSet()" class="alert alert-primary mb-3 text-center">
     Przejdź do ustawień aby ustawić limit kalorii. Przyjęto domyślnie 2000 kcal.
 </div>
+
+<app-kcal-status [kcalConsumed]="this.kcalService.currentDayRecord.$kcalConsumed" [kcalLimit]="this.kcalService.currentDayRecord.$kcalLimit"></app-kcal-status>
 <app-meal-adder></app-meal-adder>
+
+<div class="row">
+    <div class="col-md-6">
+        <app-meal-history></app-meal-history>
+    </div>
+    <div class="col-md-6">
+        <app-chart></app-chart>
+    </div>
+</div>

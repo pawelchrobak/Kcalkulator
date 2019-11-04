@@ -72,7 +72,6 @@ export class ChartComponent implements OnInit {
       labels.push(this.kcalService.dateToString(date));
     }
 
-    console.log(labels);
     return labels;
   }
 
@@ -94,7 +93,6 @@ export class ChartComponent implements OnInit {
       }
     }   
 
-    console.log(returnData);
     return returnData;
   }
   
@@ -102,11 +100,7 @@ export class ChartComponent implements OnInit {
   constructor(private kcalService: KcalCounterService) { }
   
   ngOnInit() {
-    this.getData(this.startDate, this.endDate);
-
     this.ctx = document.getElementById('myChart');
-    // this.ctx = document.getElementById('myChart').getContext('2d'); ?? why get context?
-
     this.myChart = new Chart(this.ctx, this.chartData);
   }
 

@@ -153,8 +153,5 @@ export class KcalCounterService {
 
     this.currentDayRecord = this.getDayRecord();
     this.shownDayRecord = this.currentDayRecord;
-
-    console.log(this.firstRun);
-    console.log(this.firstRunDate);
   }
 }

@@ -1,12 +1,12 @@
 <form [formGroup]="foodItemData" (ngSubmit)="editItem()">
     <div class="row">
-        <div class="col-sm">
+        <div class="col-sm-7 col-md-5 mb-1">
             <input class="form-control" type="text" formControlName="name" placeholder="nazwa" required>
         </div>
-        <div class="col-sm">
+        <div class="col-sm-5 col-md-2 mb-1">
             <input class="form-control" type="number" formControlName="kcal" placeholder="kalorie" required>
         </div>
-        <div class="col-sm">
+        <div class="col-md-5 mb-1">
             <div class="btn-group">
                 <button class="btn btn-primary" *ngIf="!editMode" type="button" (click)="enterEditMode()">{{buttonEdit}}</button>
                 <button class="btn btn-success" [disabled]="!foodItemData.valid" *ngIf="editMode" type="submit">{{buttonSave}}</button>
@@ -16,9 +16,9 @@
         </div>
     </div>
     <div *ngIf="!foodItemData.valid && editMode" class="row">
-        <div class="col-sm">
+        <div class="col">
             <div class="alert alert-danger">
-                <div>Niepoprawne dane:</div>
+                <p>Niepoprawne dane:</p>
                 <ul>
                     <li *ngIf="foodItemData.get('name').errors?.required">nazwa nie może być pusta</li>
                     <li *ngIf="foodItemData.get('kcal').errors?.required">kalorie muszą być liczbą</li>

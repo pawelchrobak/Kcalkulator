@@ -1,12 +1,8 @@
-<div class="card text-center bg-light">
-    <!-- <div class="card-header">Dziś zjadłeś już:</div> -->
+<div class="card text-center bg-light mb-3" >
     <div class="card-body">
-        <h1>{{kcalConsumed}}/{{kcalLimit}} kcal</h1>
+        <p>Dziś zjadłeś już</p>
+        <h2>{{kcalConsumed}}/{{kcalLimit}} kcal</h2>
+        <div *ngIf="kcalConsumed >= 0.8*kcalLimit && kcalConsumed <= kcalLimit" class="alert alert-warning mx-3">Uważaj, zjadłeś już ponad {{kcalConsumed/kcalLimit*100}}% limitu!</div>
+        <div *ngIf="kcalConsumed > kcalLimit" class="alert alert-danger mx-3">Oh nie! Przekroczyłeś limit o {{kcalConsumed/kcalLimit*100-100}}%!</div>
     </div>
-    <div *ngIf="kcalConsumed >= 0.8*kcalLimit && kcalConsumed <= kcalLimit" class="alert alert-warning mx-3">Uważaj, zjadłeś już ponad {{kcalConsumed/kcalLimit*100}}% limitu!</div>
-    <div *ngIf="kcalConsumed > kcalLimit" class="alert alert-danger mx-3">Oh nie! Przekroczyłeś limit o {{kcalConsumed/kcalLimit*100-100}}%!</div>
-    
 </div>
-<!-- <div id="kcal-bar" class="alert alert-primary"></div> -->
-
-
