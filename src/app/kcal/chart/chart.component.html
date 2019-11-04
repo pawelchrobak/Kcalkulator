@@ -2,6 +2,6 @@
     <h4 class="card-header">Poprzednie dni</h4>
     <div class="card-body">
         <div class="alert alert-info" *ngIf="startDateString == endDateString">Jutro zobaczysz tu statystyki z dzisiejszego dnia.</div>
-        <canvas *ngIf="startDateString != endDateString" id="myChart" width="400" height="400"></canvas>
+        <canvas [hidden]="startDateString == endDateString" id="myChart" width="400" height="400"></canvas>
     </div>
 </div>
