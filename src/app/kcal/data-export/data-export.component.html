@@ -1,0 +1,13 @@
+<div class="card bg-light mb-3">
+    <h3 class="card-header">Eksportuj lub importuj dane</h3>
+    <div class="card-body">
+        <h5>Importuj dane:</h5>
+        <form #dataImport="ngForm" (ngSubmit)="onSubmit(dataImport.value)">
+            <input type="file" name="data" ngModel accept=".json">
+            <button type="submit">SUBMIT</button>
+        </form>
+
+        <h5>Eksportuj dane:</h5>
+        <button class="btn btn-primary" (click)="exportData()">Zapisz dane aplikacji do pliku</button>
+    </div>
+</div>

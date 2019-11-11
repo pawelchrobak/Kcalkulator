@@ -9,6 +9,7 @@ import { KcalStatusComponent } from './kcal-status/kcal-status.component';
 import { MealHistoryComponent } from './meal-history/meal-history.component';
 import { ChartComponent } from './chart/chart.component';
 import { LimitSetterComponent } from './limit-setter/limit-setter.component';
+import { DataExportComponent } from './data-export/data-export.component';
 
 
 
@@ -22,6 +23,7 @@ import { LimitSetterComponent } from './limit-setter/limit-setter.component';
     MealHistoryComponent,
     ChartComponent,
     LimitSetterComponent,
+    DataExportComponent,
   ],
   imports: [
     CommonModule,
@@ -35,7 +37,8 @@ import { LimitSetterComponent } from './limit-setter/limit-setter.component';
     LimitSetterComponent,
     KcalStatusComponent,
     ChartComponent,
-    MealHistoryComponent
+    MealHistoryComponent,
+    DataExportComponent
   ]
 })
 export class KcalModule { }
